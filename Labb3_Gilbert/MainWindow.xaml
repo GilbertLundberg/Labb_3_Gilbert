@@ -1,0 +1,104 @@
+﻿<Window x:Class="Labb3_Gilbert.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb3_Gilbert"
+        mc:Ignorable="d"
+         Background="#FF3F81CF"
+        ResizeMode="NoResize"
+        Title="Bokningssystem" Height="500" Width="800" WindowStartupLocation="CenterScreen">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25"/>
+            <ColumnDefinition Width="240.231"/>
+            <ColumnDefinition Width="9.769"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="25"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+        <ListBox  Name="showBookings" Grid.Row="1" Grid.Column="1" Width="250"  Grid.RowSpan="6" Margin="1,0,0,4" Background="White" Grid.ColumnSpan="3" HorizontalAlignment="Left" FontFamily="Calibri">
+            <ListBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </ListBox.Resources>
+        </ListBox>
+        <DatePicker  Name="datePicker" Grid.Row="1" Grid.Column="4" Margin="6,31,10,9" BorderBrush="#FF3F81CF"/>
+        <TextBox Name="txtboxInputName" Grid.Row="1" Grid.Column="5" Margin="10,33,7,15" BorderBrush="#FFACACAC"/>
+        <ComboBox Name="boxInputTime" Grid.Row="2" Grid.Column="4" Height="20" Margin="6,20,15,20" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxDropDownHeight="110" BorderBrush="#FF020202">
+            <ComboBoxItem Content="16:00"></ComboBoxItem>
+            <ComboBoxItem Content="16:30"></ComboBoxItem>
+            <ComboBoxItem Content="17:00"></ComboBoxItem>
+            <ComboBoxItem Content="17:30"></ComboBoxItem>
+            <ComboBoxItem Content="18:00"></ComboBoxItem>
+            <ComboBoxItem Content="18:30"></ComboBoxItem>
+            <ComboBoxItem Content="19:00"></ComboBoxItem>
+            <ComboBoxItem Content="19:30"></ComboBoxItem>
+            <ComboBoxItem Content="20:00"></ComboBoxItem>
+            <ComboBoxItem Content="20:30"></ComboBoxItem>
+            <ComboBoxItem Content="21:00"></ComboBoxItem>
+            <ComboBoxItem Content="21:30"></ComboBoxItem>
+            <ComboBoxItem Content="22:00"></ComboBoxItem>
+            <ComboBoxItem Content="22:30"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox Name="comboboxInputTable" Grid.Row="2" Grid.Column="5" Height="20" Margin="9,20,8,20" Text="Bordsnummer" ScrollViewer.VerticalScrollBarVisibility="Visible" MaxDropDownHeight="110" BorderBrush="Black">
+            <ComboBoxItem Content="1"></ComboBoxItem>
+            <ComboBoxItem Content="2"></ComboBoxItem>
+            <ComboBoxItem Content="3"></ComboBoxItem>
+            <ComboBoxItem Content="4"></ComboBoxItem>
+            <ComboBoxItem Content="5"></ComboBoxItem>
+            <ComboBoxItem Content="6"></ComboBoxItem>
+            <ComboBoxItem Content="7"></ComboBoxItem>
+            <ComboBoxItem Content="8"></ComboBoxItem>
+            <ComboBoxItem Content="9"></ComboBoxItem>
+            <ComboBoxItem Content="10"></ComboBoxItem>
+        </ComboBox>
+        <Button Name="ConfirmBooking" Grid.Row="3" Grid.Column="4" Height="25" Margin="6,10,15,30" Content="Boka bord" Click="ConfirmBooking_Click" BorderBrush="#FFAB8E8E">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Name="OpenBookingsFromFile" Grid.Row="6" Grid.Column="4" Width="auto" Content="Visa bokningar" Margin="4,26,10,175" Click="OpenBookingsFromFile_Click" Grid.ColumnSpan="2" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Name="CancelBooking" Grid.Row="3" Grid.Column="5" Content="Avboka" Margin="9,10,7,30" Click="CancelBooking_Click" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Label Grid.Column="5" Content="Namn" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="Auto" Grid.Row="1" Width="Auto" Foreground="White" BorderBrush="#FF1D1D1D" Margin="0,7,0,0"/>
+        <Label Grid.Column="4" Content="Datum" HorizontalAlignment="Left" VerticalAlignment="Top"  Height="Auto" Grid.Row="1" Width="Auto" Foreground="White" RenderTransformOrigin="1.027,0.646" Margin="44,7,0,0"/>
+        <Label Grid.Column="5" Content="Bordsnummer" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="Auto" Grid.Row="1" Width="Auto" Foreground="White" Margin="0,61,0,0" Grid.RowSpan="2"/>
+        <Label Grid.Column="4" Content="Tid" HorizontalAlignment="Center" VerticalAlignment="Top"  Height="Auto" Grid.Row="1" Width="Auto" Foreground="White" Margin="0,61,0,0" Grid.RowSpan="2"/>
+        <Label Grid.Column="1" Content="Bordsbokningar" HorizontalAlignment="Left"  VerticalAlignment="Top" Foreground="White" FontSize="14" Width="262" Grid.ColumnSpan="4" Margin="76,-4,0,0"/>
+        <Rectangle Grid.Column="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" Height="1" Grid.Row="6" Stroke="White" VerticalAlignment="Top" Width="284" Fill="White" RadiusX="4" RadiusY="4" />
+
+
+    </Grid>
+
+
+</Window>
