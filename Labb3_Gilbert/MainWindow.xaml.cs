@@ -17,12 +17,17 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Diagnostics.Metrics;
 using Path = System.IO.Path;
+using static System.Net.WebRequestMethods;
+using File = System.IO.File;
 
 namespace Labb3_Gilbert
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
+    //Programmet skapar en textfil med "Default-bokningar" vid första användandet. Sedan sparas textfilen löpande vid varje bokning/avbokning. 
+    //Det innebär att när textfilen sparas och när man öppnar programmet så är textfilen som den var när programmet stängdes senast.
     public partial class MainWindow : Window
     {
 
@@ -93,8 +98,10 @@ namespace Labb3_Gilbert
                     {
                         showBookings.Items.Add(line);
                     }
-
-
+                }
+                if(showBookings.Items.Count == 0)
+                {
+                    MessageBox.Show("Bokningslistan är för närvarande tom, lägg till bokningar om du vill visa dem här");
                 }
             }
             catch (Exception ex)
@@ -139,9 +146,23 @@ namespace Labb3_Gilbert
         {
             try
             {
-                bokningsLista.Add(new Bokning("Nils", "2022-12-09", "22:30", "4"));
-                bokningsLista.Add(new Bokning("Gilbert", "2022-12-24", "18:00", "8"));
-                bokningsLista.Add(new Bokning("Viktoria", "2023-01-09", "20:30", "1"));
+                if (File.Exists(@"Bordsbokningar.txt"))
+                {
+                    var bookingsFromFile =
+                    File
+                    .ReadLines(@"Bordsbokningar.txt")
+                    .Select(x => x.Split(' ').Select(y => y.Trim()).ToArray())
+                    .Select(x => new Bokning(x[0], x[1], x[2], x[3]))
+                    .ToArray();
+                    bokningsLista.AddRange(bookingsFromFile);
+                }
+                else
+                {
+                    //Ett sätt att lägga till exempelbokningarna. Vid första användningen skapas filen och sedan kan den redigeras och sparas hur man vill.
+                    bokningsLista.Add(new Bokning("Nils", "2022-12-09", "22:30", "4"));
+                    bokningsLista.Add(new Bokning("Gilbert", "2022-12-24", "18:00", "8"));
+                    bokningsLista.Add(new Bokning("Viktoria", "2023-01-09", "20:30", "1"));
+                }
             }
             catch(Exception ex)
             {
