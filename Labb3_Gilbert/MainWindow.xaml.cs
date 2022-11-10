@@ -25,9 +25,9 @@ namespace Labb3_Gilbert
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
-    //Programmet skapar en textfil med "Default-bokningar" vid första användandet. Sedan sparas textfilen löpande vid varje bokning/avbokning. 
-    //Det innebär att när textfilen sparas och när man öppnar programmet så är textfilen som den var när programmet stängdes senast.
+
+/*    Programmet skapar en textfil med "Default-bokningar" vid första användandet.Sedan sparas textfilen löpande vid varje bokning/avbokning.
+    Det innebär att när textfilen sparas och när man öppnar programmet så är textfilen som den var när programmet stängdes senast.*/
     public partial class MainWindow : Window
     {
 
